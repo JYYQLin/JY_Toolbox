@@ -5,18 +5,14 @@
 //  Created by JYYQLin on 2024/10/13.
 //
 
-public enum JY_Enum_BaseController_Status: String {
+public enum JY_Enum_BaseController_Status: Int {
     //  默认状态下 显示contentView
-    case yq_default = "yq_default"
-    //  显示 request_loadingView
-    case yq_first_request = "yq_first_request"
-    //  显示
-    case yq_data_loaded = "yq_data_loaded"
+    case yq_default = -99
     
-    case yq_no_internet = "yq_no_internet"
-    case yq_no_message = "yq_no_message"
-    case yq_no_data = "yq_no_data"
-    case yq_no_comment = "yq_no_comment"
+    case yq_loading = -98
     
-    case yq_other = "yq_other"
+    //  显示已经加载过数据
+    case yq_data_loaded = -97
+    
+    case yq_show_status = 1
 }

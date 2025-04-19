@@ -2,44 +2,22 @@
 //  JY_Enum_BaseController_Status
     - 预设的控制器状态:
         1. yq_default: 默认状态
-        2. yq_first_request: 首次加载请求状态, 在控制器还没有任何内容的情况下使用, 控制器内直接显示加载动画
+        2. yq_loading: 首次加载请求状态, 显示加载动画
         3. yq_data_loaded: 控制器已经加载了数据, 跟yq_default其实差不多
-        4. yq_no_internet: 控制器显示没有网络
-        5. yq_no_message: 控制器显示没有消息
-        6. yq_no_data: 控制器显示没有数据
-        7. yq_no_comment: 控制器显示没有对话
-        8. yq_other: 用于显示自定义的控制器状态
-
-
-//  JY_Base_Loading_View: 控制器在yq_first_request状态下, 才显示, 显示加载动画
-
-        1. JY_Base_Loading_View 大小与控制器大小系统,
-                可以在Assets资源中添加 yq_controller_loadingView_bgColor 颜色, 会通过 backgroundColor = UIColor(named: "yq_controller_loadingView_bgColor") 加载对应背景色
-        2. JY_Base_Loading_View中 有个yq_loading_view的UIActivityIndicatorView, 用于现实loading动画,
-                可以在资源中添加 yq_controller_loadingView_color 颜色, 会通过 backgroundColor = UIColor(named: "yq_controller_loadingView_color") 加载对应请求色
-
-
-//  JY_Status_View: 控制器在 yq_no_internet || yq_no_message || yq_no_data || yq_no_comment || yq_other 状态下, 才显示
-
-        1. 根据 JY_Enum_BaseController_Status 的值显示对应的状态图片
-        2. 预设状态 yq_no_internet || yq_no_message || yq_no_data || yq_no_comment 下可以在Assets资源中添加名为 yq_no_internet_icon || yq_no_message_icon || yq_no_data_icon || yq_no_comment_icon 的图片, 在对应状态会显示对应图片
-        3. 预设状态 yq_no_internet || yq_no_message || yq_no_data || yq_no_comment 下可以在项目名相同的本地化文件中修改 yq_no_data_string || yq_no_internet_string || yq_no_message_string || yq_no_comment_string 显示对应文字
-        4. 可以在Assets资源中添加 yq_base_status_label_textColor 颜色, 会通过 yq_status_label.textColor = UIColor(named: "yq_base_status_label_textColor") 加载状态提示文字颜色
-        5. 如果需要自定义状态图片, 可以传入yq_other, 然后根据后续参数, 修改图片/图片大小 以及 状态文字的大小/颜色/内容
-        6. 当 JY_Status_View 显示时, 点击会 自动调用yq_retry_request_click, 重写 yq_retry_request_click方法 重新请求当前页数据
+        4. yq_show_status: 控制器显示状态
 
 
 //  JY_Base_Controller: 说明
-控制器基类: 封装了几个部分, 方便开发
+封装了几个控件, 方便开发
 1. yq_content_view: 控制器显示的内容控件, 将控制器加载后需要显示的内容都放进这里, 方便统一控制.
     a.只有在控制器的JY_Enum_BaseController_Status 为 yq_default || yq_data_loaded 才会显示, 默认大小与控制器View系统
 
 2. yq_background_content_view: 层级在之下, 用于显示控制器的背景图/背景色, 控件任何状态下都会显示
     a. 可以通过在Assets资源中添加 yq_baseController_bgColor 颜色统一设置控制器的背景色
     b. 如果有背景相关的控件, 都放在 yq_background_content_view 中 方便统一管理
-    c. 预设了一个 yq_background_header_imageView, 如果有图片需要统一配置一张控制器的背景图 可以在Assets资源中添加 yq_baseController_bg_headerimage 图片统一设置
 
-3. yq_request_loading_view: 控制器加载时,显示的loadingview动画, 只有在控制器状态为 yq_first_request 才会显示, 与yq_content_view 显示互斥
+3. yq_request_loading_view: 控制器加载时, 显示的loadingview动画, 只有在控制器状态为 yq_first_request 才会显示, 与yq_content_view 显示互斥
+    a. 将加载动画的view放到yq_request_loading_view中
 
 4. yq_status_view: 详见 JY_Status_View 描述, 与yq_content_view 显示互斥
 

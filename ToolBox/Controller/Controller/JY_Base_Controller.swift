@@ -23,7 +23,7 @@ open class JY_Base_Controller: UIViewController {
         }
     }
 
-    private(set) lazy var yq_scale: CGFloat = 1.0
+    public private(set) lazy var yq_scale: CGFloat = 1.0
     
     public lazy var yq_is_push: Bool = true
     

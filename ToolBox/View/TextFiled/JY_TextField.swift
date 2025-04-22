@@ -9,13 +9,13 @@ import UIKit
 
 open class JY_TextField: UITextField {
     
-   private(set) lazy var yq_scale: CGFloat = 1
-    func yq_set(scale: CGFloat) {
-        if yq_scale != scale {
-            yq_scale = scale
-            layoutSubviews()
-        }
-    }
+    public private(set) lazy var yq_scale: CGFloat = 1
+    open func yq_set(scale: CGFloat) {
+         if yq_scale != scale {
+             yq_scale = scale
+             layoutSubviews()
+         }
+     }
     
     public var yq_placeholder_color: UIColor? {
         didSet{

@@ -10,13 +10,13 @@ import UIKit
 
 open class JY_Button: UIButton {
     
-   private(set) lazy var yq_scale: CGFloat = 1
-    func yq_set(scale: CGFloat) {
-        if yq_scale != scale {
-            yq_scale = scale
-            layoutSubviews()
-        }
-    }
+    public private(set) lazy var yq_scale: CGFloat = 1
+    open func yq_set(scale: CGFloat) {
+         if yq_scale != scale {
+             yq_scale = scale
+             layoutSubviews()
+         }
+     }
     
     public override init(frame: CGRect = .zero) {
         super.init(frame: frame)

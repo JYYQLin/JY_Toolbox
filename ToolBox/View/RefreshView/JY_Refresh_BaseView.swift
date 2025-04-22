@@ -9,8 +9,8 @@ import UIKit
 
 open class JY_Base_TableViewCell: UITableViewCell {
     
-   private(set) lazy var yq_scale: CGFloat = 1
-    func yq_set(scale: CGFloat) {
+    public private(set) lazy var yq_scale: CGFloat = 1
+    open func yq_set(scale: CGFloat) {
         if yq_scale != scale {
             yq_scale = scale
             layoutSubviews()
@@ -40,13 +40,13 @@ open class JY_Base_TableViewCell: UITableViewCell {
 
 open class JY_Base_CollectionViewCell: UICollectionViewCell {
     
-   private(set) lazy var yq_scale: CGFloat = 1
-    func yq_set(scale: CGFloat) {
-        if yq_scale != scale {
-            yq_scale = scale
-            layoutSubviews()
-        }
-    }
+    public private(set) lazy var yq_scale: CGFloat = 1
+    open func yq_set(scale: CGFloat) {
+         if yq_scale != scale {
+             yq_scale = scale
+             layoutSubviews()
+         }
+     }
     
     public override init(frame: CGRect = .zero) {
         super.init(frame: frame)
@@ -71,13 +71,14 @@ open class JY_Base_CollectionViewCell: UICollectionViewCell {
 
 
 open class JY_Base_CollectionReusableView: UICollectionReusableView {
-   private(set) lazy var yq_scale: CGFloat = 1
-    func yq_set(scale: CGFloat) {
-        if yq_scale != scale {
-            yq_scale = scale
-            layoutSubviews()
-        }
-    }
+
+    public private(set) lazy var yq_scale: CGFloat = 1
+    open func yq_set(scale: CGFloat) {
+         if yq_scale != scale {
+             yq_scale = scale
+             layoutSubviews()
+         }
+     }
     
     public override init(frame: CGRect = .zero) {
         super.init(frame: frame)
@@ -102,13 +103,13 @@ open class JY_Base_CollectionReusableView: UICollectionReusableView {
 
 open class JY_Base_TableViewHeaderFooterView: UITableViewHeaderFooterView {
     
-   private(set) lazy var yq_scale: CGFloat = 1
-    func yq_set(scale: CGFloat) {
-        if yq_scale != scale {
-            yq_scale = scale
-            layoutSubviews()
-        }
-    }
+    public private(set) lazy var yq_scale: CGFloat = 1
+    open func yq_set(scale: CGFloat) {
+         if yq_scale != scale {
+             yq_scale = scale
+             layoutSubviews()
+         }
+     }
     
     public override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)

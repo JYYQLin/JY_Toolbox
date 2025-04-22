@@ -19,7 +19,7 @@ open class JY_Base_Controller: UIViewController {
     //  控制器状态
     public lazy var yq_controller_status: JY_Enum_BaseController_Status = .yq_default {
         didSet {
-//            yq_controller_status_change()
+            yq_controller_status_change()
         }
     }
 
@@ -133,14 +133,38 @@ extension JY_Base_Controller {
 }
 
 extension JY_Base_Controller {
-    private func yq_show_request_loading() {
+    private func yq_controller_status_change() {
+        
+        if yq_controller_status == JY_Enum_BaseController_Status.yq_loading {
+            
+            yq_show_loadingView()
+        }else if yq_controller_status == .yq_data_loaded || yq_controller_status == .yq_default {
+            
+            yq_show_contentView()
+        }else if yq_controller_status == .yq_show_status {
+            
+            yq_show_statusView()
+        }
+    }
+}
+
+extension JY_Base_Controller {
+    private func yq_show_loadingView() {
         yq_content_view.isHidden = true
+        yq_status_view.isHidden = true
         yq_request_loading_view.isHidden = false
     }
     
     private func yq_show_contentView() {
         yq_request_loading_view.isHidden = true
         yq_content_view.isHidden = false
+        yq_status_view.isHidden = true
+    }
+    
+    private func yq_show_statusView() {
+        yq_content_view.isHidden = true
+        yq_status_view.isHidden = false
+        yq_request_loading_view.isHidden = true
     }
 }
 

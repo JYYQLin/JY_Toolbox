@@ -1,5 +1,5 @@
 Pod::Spec.new do |spec|
-  	spec.name         = "JY_ToolBox"
+  	spec.name         = "JY_Toolbox"
   	spec.version      = "1.0.0"
   	spec.summary      = "本人封装的开发工具集合"
 
@@ -8,7 +8,7 @@ Pod::Spec.new do |spec|
                    暂时不想写任何描述
                    DESC
 
-  	spec.homepage     = "https://github.com/JYYQLin/JY_ToolBox"
+  	spec.homepage     = "https://github.com/JYYQLin/JY_Toolbox"
 	spec.screenshots  = "无logo_URl"
 
   	spec.license      = { :type => "MIT", :file => "LICENSE" }
@@ -21,7 +21,7 @@ Pod::Spec.new do |spec|
 
   	spec.ios.deployment_target = "13.0"
 
-  	spec.source       = { :git => "https://github.com/JYYQLin/JY_ToolBox.git", :tag => spec.version }
+  	spec.source       = { :git => "https://github.com/JYYQLin/JY_Toolbox.git", :tag => spec.version }
   	spec.source_files  = "ToolBox/**/*.{h,m,swift}"
 
 end

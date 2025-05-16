@@ -7,9 +7,9 @@
 
 import UIKit
 
-typealias JY_TabBar_Theme_Type = (font: UIFont, normalTextColor: UIColor, selectedColor: UIColor, tabBarBackgroundColor: UIColor?)
+public typealias JY_TabBar_Theme_Type = (font: UIFont, normalTextColor: UIColor, selectedColor: UIColor, tabBarBackgroundColor: UIColor?)
 
-class JY_TabBar_Controller: UITabBarController {
+open class JY_TabBar_Controller: UITabBarController {
     private(set) lazy var yq_tabBar_item_data: [(title: String, controllerID: String, controller: UINavigationController)] = [(title: String, controllerID: String, controller: UINavigationController)]()
     
     private(set) lazy var yq_tabBar_item_theme: JY_TabBar_Theme_Type = (font: UIFont.yq_semibold_font(10), normalTextColor: UIColor(named: "JY_TabBar_normal_textColor") ?? UIColor.yq_random(), selectedColor: UIColor(named: "JY_TabBar_selected_textColor") ?? UIColor.yq_random(), tabBarBackgroundColor: UIColor(named: "JY_TabBar_bgColor"))
@@ -20,14 +20,14 @@ class JY_TabBar_Controller: UITabBarController {
 }
 
 extension JY_TabBar_Controller {
-    func yq_set(tabBarItemTheme theme: JY_TabBar_Theme_Type) {
+    public func yq_set(tabBarItemTheme theme: JY_TabBar_Theme_Type) {
         yq_tabBar_item_theme = theme
         yq_set_tabBarFrame()
     }
 }
 
 extension JY_TabBar_Controller {
-    override func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         
         /// 添加子控制器
@@ -36,7 +36,7 @@ extension JY_TabBar_Controller {
         self.delegate = self
     }
     
-    override func viewWillLayoutSubviews() {
+    override open func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
         yq_set_tabBarFrame()
@@ -79,11 +79,11 @@ extension JY_TabBar_Controller {
 }
 
 extension JY_TabBar_Controller: UITabBarControllerDelegate {
-    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+    public func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         return true
     }
     
-    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+    public func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
 
         var currentIndex = -1
         
@@ -99,7 +99,7 @@ extension JY_TabBar_Controller: UITabBarControllerDelegate {
     }
 }
 
-extension JY_TabBar_Controller {
+public extension JY_TabBar_Controller {
     func yq_select_controller(index: Int) {
         
         if index < self.children.count {
@@ -116,7 +116,7 @@ extension JY_TabBar_Controller {
     }
 }
 
-extension JY_TabBar_Controller {
+public extension JY_TabBar_Controller {
    @objc func yq_add_childs_controller() {
         
         yq_tabBar_item_data = [(title: String, controllerID: String, controller: UINavigationController)]()

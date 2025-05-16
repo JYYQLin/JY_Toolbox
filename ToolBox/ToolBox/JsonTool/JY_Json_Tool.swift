@@ -7,16 +7,16 @@
 
 import UIKit
 
-public class JY_Json_Tool {
+open class JY_Json_Tool {
     
 }
 
 //  MARK: 将[String: Any]转成对应的Json字符串
-extension JY_Json_Tool {
+public extension JY_Json_Tool {
     /**
      将[String: Any]转成对应的Json字符串
      */
-    public static func yq_dictionary_to_JSONString(_ dictionary: [String: Any]) -> String? {
+    static func yq_dictionary_to_JSONString(_ dictionary: [String: Any]) -> String? {
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: dictionary, options: .prettyPrinted)
             if let jsonString = String(data: jsonData, encoding: .utf8) {
@@ -30,11 +30,11 @@ extension JY_Json_Tool {
 }
 
 //  MARK: 将[Any]转成对应的Json字符串
-extension JY_Json_Tool {
+public extension JY_Json_Tool {
     /**
      将[Any]转成对应的Json字符串
      */
-    public static func yq_array_to_JSONString(_ array: [[Any]]) -> String? {
+    static func yq_array_to_JSONString(_ array: [[Any]]) -> String? {
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: array, options: .prettyPrinted)
             if let jsonString = String(data: jsonData, encoding: .utf8) {
@@ -47,11 +47,11 @@ extension JY_Json_Tool {
     }
 }
 
-extension JY_Json_Tool {
+public extension JY_Json_Tool {
     /// json字符串转字典
     /// - Parameter jsonStirng: json字符串
     /// - Returns: 字典(类型[String : Any])
-    public static func yq_JSONString_to_dictionary(from jsonStirng: String) -> [String : Any]? {
+    static func yq_JSONString_to_dictionary(from jsonStirng: String) -> [String : Any]? {
         guard let data = yq_JSONString_to_Objc(from: jsonStirng) else {
             return nil
         }
@@ -60,11 +60,11 @@ extension JY_Json_Tool {
 }
 
 //  MARK: json字符串转对象
-extension JY_Json_Tool {
+public extension JY_Json_Tool {
     /// json字符串转对象
     /// - Parameter jsonStirng: json字符串
     /// - Returns: 对象(类型Any)
-    public static func yq_JSONString_to_Objc(from jsonStirng: String) -> Any? {
+    static func yq_JSONString_to_Objc(from jsonStirng: String) -> Any? {
         guard let data = jsonStirng.data(using: .utf8) else {
             return nil
         }

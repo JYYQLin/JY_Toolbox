@@ -73,7 +73,7 @@ extension JY_Loading_HUD {
         }
     }
     
-    class func yq_hidden_loading(taskName: String) {
+    @objc open class func yq_hidden_loading(taskName: String) {
         
         DispatchQueue.main.async {
             JY_Loading_HUD_Manager.yq_shared.yq_hidden_loading_HUD(taskName: taskName)

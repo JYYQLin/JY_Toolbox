@@ -7,7 +7,7 @@
 
 import UIKit
 
-class JY_System_Manager {
+open class JY_System_Manager {
     
     static let yq_shared: JY_System_Manager = JY_System_Manager()
     
@@ -18,7 +18,7 @@ class JY_System_Manager {
     deinit { }
 }
 
-extension JY_System_Manager {
+public extension JY_System_Manager {
     func yq_set(payDebug: Bool) {
         
         if payDebug != yq_pay_debug {

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class JY_Timer_Manager {
+open class JY_Timer_Manager {
     // 定义单例实例
     static let yq_shared = JY_Timer_Manager()
     // 私有化初始化方法，防止外部创建新的实例
@@ -26,7 +26,7 @@ class JY_Timer_Manager {
     }
 }
 
-extension JY_Timer_Manager {
+public extension JY_Timer_Manager {
     func yq_set(isDebug: Bool) {
         yq_is_debug = isDebug
     }
@@ -36,7 +36,7 @@ extension JY_Timer_Manager {
     }
 }
 
-extension JY_Timer_Manager {
+public extension JY_Timer_Manager {
     /** 开始定时器 */
     func yq_start_timer() {
         if yq_check_timer_running() == true {
@@ -70,7 +70,7 @@ extension JY_Timer_Manager {
     }
 }
 
-extension JY_Timer_Manager {
+public extension JY_Timer_Manager {
     @objc private func yq_timer_fired() {
         
         yq_run_time = yq_run_time + 1
@@ -89,7 +89,7 @@ extension JY_Timer_Manager {
 
 
 //  MARK: 定时器通知
-extension JY_Timer_Manager {
+public extension JY_Timer_Manager {
     
     class func yq_timer_fired_change_notification_name() -> String {
         let name = ("\(self)" + "_" + "\(#function)")

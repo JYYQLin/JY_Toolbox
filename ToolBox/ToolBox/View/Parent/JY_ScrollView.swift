@@ -31,6 +31,6 @@ open class JY_ScrollView: UIScrollView {
     }
 }
 
-extension JY_ScrollView {
-    @objc dynamic open func yq_add_subviews() { }
+public extension JY_ScrollView {
+    @objc dynamic func yq_add_subviews() { }
 }

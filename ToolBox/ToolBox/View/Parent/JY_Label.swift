@@ -28,6 +28,6 @@ open class JY_Label: UILabel {
     }
 }
 
-extension JY_Label {
-    @objc dynamic open func yq_add_subviews() { }
+public extension JY_Label {
+    @objc dynamic func yq_add_subviews() { }
 }

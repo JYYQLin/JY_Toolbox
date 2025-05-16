@@ -9,7 +9,7 @@ import UIKit
 
 open class JY_System_Manager {
     
-    static let yq_shared: JY_System_Manager = JY_System_Manager()
+    public static let yq_shared: JY_System_Manager = JY_System_Manager()
     
     private(set) lazy var yq_pay_debug: Bool = false
     

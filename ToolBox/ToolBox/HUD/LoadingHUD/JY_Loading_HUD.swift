@@ -7,9 +7,9 @@
 
 import UIKit
 
-class JY_Loading_HUD: JY_View {
+open class JY_Loading_HUD: JY_View {
     
-    private(set) lazy var yq_HUD_content_view: UIView = UIView()
+    lazy var yq_HUD_content_view: JY_View = JY_View()
     
     private(set) lazy var yq_tap_count: Int = 0
     
@@ -17,7 +17,7 @@ class JY_Loading_HUD: JY_View {
     lazy var yq_creat_time: Int = 0
 }
 
-extension JY_Loading_HUD {
+public extension JY_Loading_HUD {
     override func yq_add_subviews() {
         super.yq_add_subviews()
         
@@ -34,7 +34,7 @@ extension JY_Loading_HUD {
     }
 }
 
-extension JY_Loading_HUD {
+public extension JY_Loading_HUD {
     //  提供一个方法 强制关闭HUD, 防止死机状态
     @objc private func yq_tap_add_count() {
         
@@ -49,7 +49,7 @@ extension JY_Loading_HUD {
     
 }
 
-extension JY_Loading_HUD {
+public extension JY_Loading_HUD {
     /**
      显示loadingView
      toView: 显示在哪个控件控件中, 如果不传 就显示在主窗口上

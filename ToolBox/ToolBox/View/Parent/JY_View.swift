@@ -28,6 +28,6 @@ open class JY_View: UIView {
     }
 }
 
-extension JY_View {
+public extension JY_View {
     @objc dynamic open func yq_add_subviews() { }
 }

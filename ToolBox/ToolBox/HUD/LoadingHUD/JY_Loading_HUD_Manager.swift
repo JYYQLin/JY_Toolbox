@@ -7,9 +7,9 @@
 
 import UIKit
 
-class JY_Loading_HUD_Manager {
+open class JY_Loading_HUD_Manager {
     // 定义单例实例
-    static let yq_shared = JY_Loading_HUD_Manager()
+    public static let yq_shared = JY_Loading_HUD_Manager()
     // 私有化初始化方法，防止外部创建新的实例
     private init() { }
     
@@ -23,13 +23,13 @@ class JY_Loading_HUD_Manager {
     
 }
 
-extension JY_Loading_HUD_Manager {
+public extension JY_Loading_HUD_Manager {
     func yq_set(timeOut: Int) {
         yq_timeout = timeOut
     }
 }
 
-extension JY_Loading_HUD_Manager {
+public extension JY_Loading_HUD_Manager {
     func yq_add_time_notification() {
         JY_Timer_Manager.yq_add_timer_fired_change_notification(self, selector: #selector(yq_auto_hidden_loading_HUD))
     }
@@ -40,7 +40,7 @@ extension JY_Loading_HUD_Manager {
     }
 }
 
-extension JY_Loading_HUD_Manager {
+public extension JY_Loading_HUD_Manager {
     
     func yq_add_loading_HUD(_ HUD: (showView: UIView, LoadingHUD: JY_Loading_HUD)) {
         
@@ -72,9 +72,9 @@ extension JY_Loading_HUD_Manager {
 //        guard let showView = UIWindow.yq_first_window() else {
 //            return
 //        }
-//        
+//
 //        let scale = showView.frame.width.yq_scale_to(originalWidth: 375)
-//        
+//
 //        if let HUD = yq_loading_HUD_array.first {
 //            showView.addSubview(HUD.LoadingHUD)
 //            HUD.LoadingHUD.frame = showView.bounds
@@ -110,11 +110,11 @@ extension JY_Loading_HUD_Manager {
     @objc private func yq_auto_hidden_loading_HUD() {
         
 //        for HUD in yq_loading_HUD_array {
-//            
+//
 //            if ((HUD.LoadingHUD.yq_creat_time + yq_timeout) < JY_Date_Tool.yq_get_current_timeInterval()) {
 //                yq_hidden_loading_HUD(taskName: HUD.LoadingHUD.yq_task_Name)
 //            }
-//            
+//
 //        }
     }
 }

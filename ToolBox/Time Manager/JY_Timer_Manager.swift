@@ -9,7 +9,7 @@ import UIKit
 
 open class JY_Timer_Manager {
     // 定义单例实例
-    static let yq_shared = JY_Timer_Manager()
+    public static let yq_shared = JY_Timer_Manager()
     // 私有化初始化方法，防止外部创建新的实例
     private init() {}
         

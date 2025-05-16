@@ -7,7 +7,7 @@
 
 import UIKit
 
-class JY_TableView: UITableView {
+open class JY_TableView: UITableView {
    
     public private(set) lazy var yq_scale: CGFloat = 1
     open func yq_set(scale: CGFloat) {
@@ -32,7 +32,7 @@ class JY_TableView: UITableView {
     }
 }
 
-extension JY_TableView {
+public extension JY_TableView {
     @objc dynamic open func yq_add_subviews() { }
 }
 

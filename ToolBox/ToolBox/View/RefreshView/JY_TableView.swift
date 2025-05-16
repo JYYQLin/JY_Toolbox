@@ -33,6 +33,5 @@ open class JY_TableView: UITableView {
 }
 
 public extension JY_TableView {
-    @objc dynamic open func yq_add_subviews() { }
+    @objc dynamic func yq_add_subviews() { }
 }
-

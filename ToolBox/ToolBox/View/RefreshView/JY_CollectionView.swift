@@ -7,7 +7,7 @@
 
 import UIKit
 
-class JY_CollectionView: UICollectionView {
+open class JY_CollectionView: UICollectionView {
 
     public private(set) lazy var yq_scale: CGFloat = 1
     open func yq_set(scale: CGFloat) {
@@ -32,6 +32,6 @@ class JY_CollectionView: UICollectionView {
     }
 }
 
-extension JY_CollectionView {
+public extension JY_CollectionView {
     @objc dynamic open func yq_add_subviews() { }
 }

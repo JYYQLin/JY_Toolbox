@@ -1,0 +1,36 @@
+//
+//  JY_ScrollView.swift
+//  JY_Treasure_Box
+//
+//  Created by JYYQLin on 2025/4/9.
+//
+
+import UIKit
+
+open class JY_ScrollView: UIScrollView {
+    
+    public private(set) lazy var yq_scale: CGFloat = 1
+    open func yq_set(scale: CGFloat) {
+         if yq_scale != scale {
+             yq_scale = scale
+             layoutSubviews()
+         }
+     }
+    
+    public override init(frame: CGRect = .zero) {
+        super.init(frame: frame)
+        
+        contentInsetAdjustmentBehavior = .never
+        automaticallyAdjustsScrollIndicatorInsets = false
+        
+        yq_add_subviews()
+    }
+    
+    public required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension JY_ScrollView {
+    @objc dynamic open func yq_add_subviews() { }
+}

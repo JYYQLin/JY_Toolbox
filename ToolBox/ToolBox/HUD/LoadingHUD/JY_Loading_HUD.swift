@@ -9,16 +9,16 @@ import UIKit
 
 open class JY_Loading_HUD: JY_View {
     
-    lazy var yq_HUD_content_view: JY_View = JY_View()
+    public lazy var yq_HUD_content_view: JY_View = JY_View()
     
     private(set) lazy var yq_tap_count: Int = 0
     
-    lazy var yq_task_Name: String = ""
-    lazy var yq_creat_time: Int = 0
+    public lazy var yq_task_Name: String = ""
+    public lazy var yq_creat_time: Int = 0
 }
 
-public extension JY_Loading_HUD {
-    override func yq_add_subviews() {
+extension JY_Loading_HUD {
+    override open func yq_add_subviews() {
         super.yq_add_subviews()
         
         self.addSubview(yq_HUD_content_view)
@@ -27,7 +27,7 @@ public extension JY_Loading_HUD {
         yq_HUD_content_view.addGestureRecognizer(tap)
     }
     
-    override func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
         
         yq_HUD_content_view.frame = self.bounds
@@ -49,13 +49,13 @@ public extension JY_Loading_HUD {
     
 }
 
-public extension JY_Loading_HUD {
+extension JY_Loading_HUD {
     /**
      显示loadingView
      toView: 显示在哪个控件控件中, 如果不传 就显示在主窗口上
      taskName: 任务名, 如果loading正在显示状态, 又调用一次相同任务名,则不会添加
      */
-    @objc class func yq_show_loading(taskName: String) {
+    @objc open class func yq_show_loading(taskName: String) {
         //        class func yq_show_loading(toView view: UIView, taskName: String) {
         
         //        let showView = view == nil ? UIWindow.yq_first_window() : view!

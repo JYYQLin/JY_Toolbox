@@ -8,7 +8,7 @@
 import UIKit
 
 //  MARK: TabBar选中了Controller的通知
-extension JY_TabBar_Controller {
+public extension JY_TabBar_Controller {
     class func yq_tabBarController_didSelect_notification_name() -> String {
         let name =  "\(self)" + "\(#function)"
         return name.yq_md5()

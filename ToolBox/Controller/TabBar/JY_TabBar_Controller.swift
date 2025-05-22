@@ -10,7 +10,7 @@ import UIKit
 public typealias JY_TabBar_Theme_Type = (font: UIFont, normalTextColor: UIColor, selectedColor: UIColor, tabBarBackgroundColor: UIColor?)
 
 open class JY_TabBar_Controller: UITabBarController {
-    private(set) lazy var yq_tabBar_item_data: [(title: String, controllerID: String, controller: UINavigationController)] = [(title: String, controllerID: String, controller: UINavigationController)]()
+    public lazy var yq_tabBar_item_data: [(title: String, controllerID: String, controller: UINavigationController)] = [(title: String, controllerID: String, controller: UINavigationController)]()
     
     private(set) lazy var yq_tabBar_item_theme: JY_TabBar_Theme_Type = (font: UIFont.yq_semibold_font(10), normalTextColor: UIColor(named: "JY_TabBar_normal_textColor") ?? UIColor.yq_random(), selectedColor: UIColor(named: "JY_TabBar_selected_textColor") ?? UIColor.yq_random(), tabBarBackgroundColor: UIColor(named: "JY_TabBar_bgColor"))
     
@@ -40,11 +40,19 @@ extension JY_TabBar_Controller {
         super.viewWillLayoutSubviews()
         
         yq_set_tabBarFrame()
+        
+        if (self.tabBar.items?.count ?? 0) > 0 {
+            for (index, item) in self.tabBar.items!.enumerated() {
+                if index < yq_tabBar_item_data.count {
+                    item.title = yq_tabBar_item_data[index].title.yq_localized(tableName: "JY_TabBar")
+                }
+            }
+        }
     }
 }
 
 extension JY_TabBar_Controller {
-    private func yq_set_tabBarFrame() {
+    @objc func yq_set_tabBarFrame() {
         let tabBarFont = yq_tabBar_item_theme.font
         let tabBarTextColorNormal = yq_tabBar_item_theme.normalTextColor
         let tabBarTextColorSelected = yq_tabBar_item_theme.selectedColor
@@ -66,14 +74,6 @@ extension JY_TabBar_Controller {
             self.tabBar.scrollEdgeAppearance = self.tabBar.standardAppearance
         } else {
             
-        }
-        
-        if (self.tabBar.items?.count ?? 0) > 0 {
-            for (index, item) in self.tabBar.items!.enumerated() {
-                if index < yq_tabBar_item_data.count {
-                    item.title = yq_tabBar_item_data[index].title.yq_localized(tableName: "JY_TabBar")
-                }
-            }
         }
     }
 }
@@ -134,4 +134,3 @@ extension JY_TabBar_Controller {
         return navigationController
     }
 }
-

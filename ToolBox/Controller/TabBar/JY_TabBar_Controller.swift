@@ -116,13 +116,13 @@ public extension JY_TabBar_Controller {
     }
 }
 
-public extension JY_TabBar_Controller {
-   @objc func yq_add_childs_controller() {
+extension JY_TabBar_Controller {
+    @objc open func yq_add_childs_controller() {
         
         yq_tabBar_item_data = [(title: String, controllerID: String, controller: UINavigationController)]()
     }
     
-    func yq_set_navigation_controller(tabBarImageNameNormal: String, tabBarImageNameSelected: String, tabBarTitleText: String, controller: UIViewController, controllerName: String) -> JY_Navigation_Controller {
+    public func yq_set_navigation_controller(tabBarImageNameNormal: String, tabBarImageNameSelected: String, tabBarTitleText: String, controller: UIViewController, controllerName: String) -> JY_Navigation_Controller {
         
         let navigationController = JY_Navigation_Controller(rootViewController: controller)
         
@@ -134,3 +134,4 @@ public extension JY_TabBar_Controller {
         return navigationController
     }
 }
+

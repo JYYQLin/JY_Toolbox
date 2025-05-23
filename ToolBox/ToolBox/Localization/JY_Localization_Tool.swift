@@ -28,6 +28,26 @@ extension JY_Localization_Tool {
         yq_current_language = currentLanguage
         
         UserDefaults.standard.set(currentLanguage.rawValue, forKey: "yq_current_language_rawValue")
+        
+        JY_Localization_Tool.yq_post_language_change_notification(object: self)
+    }
+    
+    class func yq_language_change_notification_name() -> String {
+        let name = "\(self)" + "\(#function)"
+        return name.yq_md5()
+    }
+
+    class func yq_add_language_change_notification(_ observer: Any, selector aSelector: Selector, object anObject: Any? = nil) {
+        NotificationCenter.default.addObserver(observer, selector: aSelector, name: NSNotification.Name(JY_Localization_Tool.yq_language_change_notification_name()), object: anObject)
+    }
+
+    class func yq_remove_language_change_notification(_ observer: Any, object anObject: Any? = nil) {
+        
+        NotificationCenter.default.removeObserver(observer, name: NSNotification.Name(JY_Localization_Tool.yq_language_change_notification_name()), object: anObject)
+    }
+
+    class func yq_post_language_change_notification(object anObject: Any? = nil) {
+        NotificationCenter.default.post(name: NSNotification.Name(JY_Localization_Tool.yq_language_change_notification_name()), object: anObject)
     }
 }
 

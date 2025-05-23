@@ -7,15 +7,14 @@
 
 import UIKit
 
-class JY_Model {
+open class JY_Model {
     
     private(set) lazy var yq_dic: [String: Any] = [String: Any]()
 }
 
 extension JY_Model {
-    @objc func yq_set(dic: [String: Any]) {
+    @objc open func yq_set(dic: [String: Any]) {
         
         yq_dic = dic
     }    
 }
-

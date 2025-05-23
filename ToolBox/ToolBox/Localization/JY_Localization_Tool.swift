@@ -29,7 +29,7 @@ extension JY_Localization_Tool {
         
         UserDefaults.standard.set(currentLanguage.rawValue, forKey: "yq_current_language_rawValue")
         
-        JY_Localization_Tool.yq_post_language_change_notification(object: self)
+        JY_Localization_Tool.yq_post_language_change_notification()
     }
     
     public class func yq_language_change_notification_name() -> String {

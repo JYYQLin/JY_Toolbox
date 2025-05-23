@@ -8,7 +8,7 @@
 import UIKit
 //import KeychainAccess
 
-class JY_Request_Parameter_Tool {
+open class JY_Request_Parameter_Tool {
     
 //    static func yq_UUID() -> String {
 //        
@@ -41,7 +41,7 @@ class JY_Request_Parameter_Tool {
 }
  
 extension JY_Request_Parameter_Tool {
-    static func yq_merge_parameters(parameters : [String : Any]? = nil) -> [String : Any] {
+    open class func yq_merge_parameters(parameters : [String : Any]? = nil) -> [String : Any] {
                 
         var baseParameters: [String : Any] = [
             "channel": "ios",
@@ -61,7 +61,7 @@ extension JY_Request_Parameter_Tool {
 
 extension JY_Request_Parameter_Tool {
     /** 参数合并 */
-    static func yq_merge(a:[String: Any], b:[String: Any]) -> [String: Any]{
+    open class func yq_merge(a:[String: Any], b:[String: Any]) -> [String: Any]{
         var na = a
         for e in b{
             //如果key不存在，直接增加。存在的话就会更改。
@@ -72,7 +72,7 @@ extension JY_Request_Parameter_Tool {
 }
 
 extension JY_Request_Parameter_Tool {
-   class func yq_language_Int_value() -> Int {
+    open class func yq_language_Int_value() -> Int {
         
         if yq_localized_manager.yq_current_language == .yq_english || yq_localized_manager.yq_current_language == .yq_english_UK || yq_localized_manager.yq_current_language == .yq_english_Australia {
             return 1

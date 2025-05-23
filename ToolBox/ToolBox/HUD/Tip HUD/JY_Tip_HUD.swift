@@ -7,7 +7,7 @@
 
 import UIKit
 
-class JY_Tip_HUD: JY_View {
+open class JY_Tip_HUD: JY_View {
 
     private(set) lazy var yq_title_label: JY_Label = JY_Label()
     private(set) lazy var yq_title_bgImageView: UIImageView = UIImageView()
@@ -19,7 +19,7 @@ class JY_Tip_HUD: JY_View {
 }
 
 extension JY_Tip_HUD {
-    override func yq_add_subviews() {
+    open override func yq_add_subviews() {
         super.yq_add_subviews()
         
         addSubview(yq_title_bgImageView)
@@ -35,7 +35,7 @@ extension JY_Tip_HUD {
         return CGSize(width: yq_title_label.frame.width + 12 * scale * 2, height: yq_title_label.frame.height + 4 * scale * 2)
     }
     
-    override func layoutSubviews() {
+    open override func layoutSubviews() {
         super.layoutSubviews()
         
         yq_title_bgImageView_frame()
@@ -67,18 +67,18 @@ extension JY_Tip_HUD {
 }
 
 extension JY_Tip_HUD {
-    class func yq_success_bgColor() -> UIColor {
+    open class func yq_success_bgColor() -> UIColor {
         return UIColor(named: "greenTipHUDColor") ?? UIColor.yq_color(colorString: "#4DC56C")
     }
     
-    class func yq_danger_bgColor() -> UIColor {
+    open class func yq_danger_bgColor() -> UIColor {
         return UIColor(named: "redTipHUDColor") ?? UIColor.yq_color(colorString: "#FF4B3B")
     }
 }
 
 extension JY_Tip_HUD {
     
-    @objc class func yq_show_success(tip text: String) {
+    @objc open class func yq_show_success(tip text: String) {
         
         if text.count <= 0 {
             return
@@ -98,7 +98,7 @@ extension JY_Tip_HUD {
         }
     }
     
-    @objc class func yq_show_danger(tip text: String) {
+    @objc open class func yq_show_danger(tip text: String) {
         
         if text.count <= 0 {
             return

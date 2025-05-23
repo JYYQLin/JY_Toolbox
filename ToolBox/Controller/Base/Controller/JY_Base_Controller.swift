@@ -40,7 +40,7 @@ open class JY_Base_Controller: UIViewController {
     //  用于解决,左滑返回于scrollView等控件左右滑动冲突,牺牲左侧宽度10的所有事件
     private(set) lazy var yq_left_tap_view: JY_View = JY_View()
     
-    private(set) lazy var yq_request_loading_view: JY_View = JY_View()
+    public lazy var yq_request_loading_view: JY_View = JY_View()
     
     private(set) lazy var yq_status_view: JY_View = JY_View()
     

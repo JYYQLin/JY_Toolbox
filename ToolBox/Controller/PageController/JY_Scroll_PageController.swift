@@ -7,14 +7,14 @@
 
 import UIKit
 
-class JY_Scroll_PageController: JY_PageController {
+open class JY_Scroll_PageController: JY_PageController {
 
     /**
      滚动百分比，只有在transitionStyle == .scroll, navigationOrientation == .horizontal时才会启用
      direction：滚动方向
      percentage：百分比
      */
-    var yq_scroll_percentage_block: ((_ direction: UIPageViewController.NavigationDirection, _ percentage: CGFloat) -> Void)?
+    public var yq_scroll_percentage_block: ((_ direction: UIPageViewController.NavigationDirection, _ percentage: CGFloat) -> Void)?
 
     private lazy var yq_last_contentOffset_X: CGFloat = 0
 
@@ -26,7 +26,7 @@ class JY_Scroll_PageController: JY_PageController {
 }
 
 extension JY_Scroll_PageController {
-    override func viewDidAppear(_ animated: Bool) {
+    open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         // 查找 UIPageViewController 内部的 UIScrollView
@@ -40,7 +40,7 @@ extension JY_Scroll_PageController {
 }
 
 extension JY_Scroll_PageController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         let pageWidth = scrollView.bounds.width
         let offsetX = scrollView.contentOffset.x

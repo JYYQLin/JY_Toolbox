@@ -9,7 +9,7 @@ import UIKit
 
 extension JY_PageController {
     
-    func yq_set(pageIndex: Int, direction: UIPageViewController.NavigationDirection? = nil) {
+    public func yq_set(pageIndex: Int, direction: UIPageViewController.NavigationDirection? = nil) {
                 
         guard pageIndex >= 0 && pageIndex < yq_controller_array.count else {
             return
@@ -44,7 +44,7 @@ extension JY_PageController {
 
 extension JY_PageController {
     
-    func yq_set(controllerArray: [UIViewController]) {
+    public func yq_set(controllerArray: [UIViewController]) {
         yq_controller_array = controllerArray
         
         if let firstVC = yq_controller_array.first {
@@ -52,7 +52,7 @@ extension JY_PageController {
         }
     }
     
-    func yq_add(controllerArray: [UIViewController], autoScroll: Bool = false) {
+    public func yq_add(controllerArray: [UIViewController], autoScroll: Bool = false) {
         yq_controller_array = yq_controller_array + controllerArray
         
         if autoScroll == true, let firstVC = controllerArray.first {
@@ -60,7 +60,7 @@ extension JY_PageController {
         }
     }
     
-    func yq_inset(controllerArray: [UIViewController], autoScroll: Bool = false) {
+    public func yq_inset(controllerArray: [UIViewController], autoScroll: Bool = false) {
         yq_controller_array = controllerArray + yq_controller_array
         
         if autoScroll == true, let firstVC = controllerArray.last {

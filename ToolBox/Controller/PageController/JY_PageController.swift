@@ -7,20 +7,20 @@
 
 import UIKit
 
-class JY_PageController: UIPageViewController {
+open class JY_PageController: UIPageViewController {
 
     /** 即将翻动到下一页的block
      direction：翻页方向
      willPage：即将出现的页面
      */
-    var yq_will_scroll_page_block: ((_ direction: UIPageViewController.NavigationDirection, _ currentPage: Int, _ willPage: Int) -> Void)?
+    public var yq_will_scroll_page_block: ((_ direction: UIPageViewController.NavigationDirection, _ currentPage: Int, _ willPage: Int) -> Void)?
     
     /**
         页码变动的block
      */
-    var yq_page_index_block: ((_ index: Int) -> Void)?
+    public var yq_page_index_block: ((_ index: Int) -> Void)?
     
-    lazy var yq_current_page_index: Int = 0 {
+    public lazy var yq_current_page_index: Int = 0 {
         didSet {
             yq_page_index_block?(yq_current_page_index)
         }

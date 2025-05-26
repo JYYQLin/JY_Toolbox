@@ -35,7 +35,7 @@ extension JY_PageController: UIPageViewControllerDataSource {
 }
 
 extension JY_PageController: UIPageViewControllerDelegate {
-    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+    public func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if completed {
             if let currentVC = pageViewController.viewControllers?.first,
                let currentIndex = yq_controller_array.firstIndex(of: currentVC) {
@@ -45,7 +45,7 @@ extension JY_PageController: UIPageViewControllerDelegate {
         }
     }
     
-    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+    public func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
         if let nextVC = pendingViewControllers.first, let nextIndex = yq_controller_array.firstIndex(of: nextVC) {
             if nextIndex > yq_current_page_index {
                 yq_will_scroll_page_block?(.forward, yq_current_page_index, nextIndex)

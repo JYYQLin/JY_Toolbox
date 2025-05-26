@@ -14,10 +14,10 @@ let yq_original_width = 375.0
 /**
  最大比例缩放
     手机系列最大宽度为
-            15 pro max的 430
+            16 pro max的 440
         最小宽度为
             375
- 所以最大缩放比例就是 430 / 375 = 1.14
+ 所以最大缩放比例就是 440 / 375 = 1.17333
  
  平板最小宽度为
     mini 6 的 744
@@ -27,7 +27,7 @@ let yq_original_width = 375.0
  最后取平均值 = 1.56
  
  */
-let yq_max_scale = 1.56
+let yq_max_scale = 1.18
 
 extension UIScreen {
     //  屏幕宽度

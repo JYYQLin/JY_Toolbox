@@ -8,7 +8,7 @@
 import UIKit
 
 /** 设计稿宽度 */
-let yq_original_width = 375.0
+public let yq_original_width = 375.0
 
 
 /**

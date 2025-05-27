@@ -31,6 +31,8 @@ open class JY_Base_Controller: UIViewController {
          }
      }
     
+    private lazy var yq_current_size: CGSize = .zero
+    
     public lazy var yq_is_push: Bool = true
     
     public lazy var yq_content_view: JY_View = JY_View()
@@ -61,6 +63,12 @@ extension JY_Base_Controller {
     
     override open func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
+        
+        yq_setSubviewsFrame()
+    }
+    
+    open override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         
         yq_setSubviewsFrame()
     }
@@ -129,6 +137,14 @@ extension JY_Base_Controller {
     }
     
     private func yq_layout_subviews_frame() {
+        
+        let size = view.frame.size
+        if yq_current_size.width > 0 && yq_current_size.height > 0 && size.width > 0 && size.height > 0 && yq_current_size.width == size.width && yq_current_size.height == size.height {
+            return
+        }
+                
+        yq_current_size = view.bounds.size
+        
         yq_background_content_view.frame = view.bounds
         yq_content_view.frame = view.bounds
         

@@ -7,9 +7,9 @@
 
 import UIKit
 
-class JY_Tip_HUD_Manager {
+open class JY_Tip_HUD_Manager {
     // 定义单例实例
-    static let yq_shared = JY_Tip_HUD_Manager()
+    public static let yq_shared = JY_Tip_HUD_Manager()
     // 私有化初始化方法，防止外部创建新的实例
     private init() { }
     
@@ -34,7 +34,7 @@ extension JY_Tip_HUD_Manager {
 }
 
 extension JY_Tip_HUD_Manager {
-    func yq_add_tip_HUD(_ HUD: JY_Tip_HUD) {
+    public func yq_add_tip_HUD(_ HUD: JY_Tip_HUD) {
         
         var isExist = false
 //        for oldHUD in yq_tip_HUD_array {

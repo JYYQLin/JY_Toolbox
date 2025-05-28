@@ -120,7 +120,6 @@ extension JY_Tip_HUD {
     
 }
 
-
 extension JY_Tip_HUD {
     func performCustomAnimation(completion: (() -> Void)? = nil) {
         // 起始状态

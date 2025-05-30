@@ -16,7 +16,7 @@ open class JY_Timer_Manager {
     private var yq_timer: Timer?
     
     /** 本次运行时间 */
-    private(set) lazy var yq_run_time: Int = 0
+    public lazy var yq_run_time: Int = 0
     
     private(set) lazy var yq_is_debug: Bool = false
     private lazy var yq_log_interval: Int = 1

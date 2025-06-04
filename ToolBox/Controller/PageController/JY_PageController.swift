@@ -26,7 +26,7 @@ open class JY_PageController: UIPageViewController {
         }
     }
         
-    lazy var yq_controller_array: [UIViewController] = [UIViewController]()
+    public lazy var yq_controller_array: [UIViewController] = [UIViewController]()
 
     override init(transitionStyle style: UIPageViewController.TransitionStyle, navigationOrientation: UIPageViewController.NavigationOrientation, options: [UIPageViewController.OptionsKey : Any]? = nil) {
         super.init(transitionStyle: style, navigationOrientation: navigationOrientation)

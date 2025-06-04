@@ -9,7 +9,7 @@ import UIKit
 
 extension JY_PageController {
     
-    public func yq_set(pageIndex: Int, direction: UIPageViewController.NavigationDirection? = nil) {
+    public func yq_set(pageIndex: Int, direction: UIPageViewController.NavigationDirection? = nil, animated: Bool = true) {
                 
         guard pageIndex >= 0 && pageIndex < yq_controller_array.count else {
             return
@@ -22,7 +22,7 @@ extension JY_PageController {
         let targetVC = yq_controller_array[pageIndex]
         
         if direction != nil {
-            setViewControllers([targetVC], direction: direction!, animated: true, completion: nil)
+            setViewControllers([targetVC], direction: direction!, animated: animated, completion: nil)
         }
         else{
             
@@ -30,11 +30,11 @@ extension JY_PageController {
                 
             }
             else if pageIndex < yq_current_page_index {
-                setViewControllers([targetVC], direction: .reverse, animated: true, completion: nil)
+                setViewControllers([targetVC], direction: .reverse, animated: animated, completion: nil)
 
             }
             else{
-                setViewControllers([targetVC], direction: .forward, animated: true, completion: nil)
+                setViewControllers([targetVC], direction: .forward, animated: animated, completion: nil)
             }
         }
         

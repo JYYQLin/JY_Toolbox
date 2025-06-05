@@ -61,35 +61,44 @@ extension Int {
 extension Int {
     /// 将数字转换为带有 K/M 后缀的缩写字符串（保留两位小数）
     public func yq_to_unitString() -> String {
-        // 数值小于 1000，直接返回原始值
-        guard self >= 1000 else {
+        // 处理零或负数（直接返回原值）
+        guard self != 0, self > 0 else {
             return "\(self)"
         }
         
-        // 定义单位和除数
-        let units = ["K", "M"]
-        let divisors = [1_000, 1_000_000]
+        // 定义单位（基于 SI 单位制，10^3 进制）
+        let units = ["K", "M", "G", "T", "P", "E"]
+        let divisors: [Double] = [1e3, 1e6, 1e9, 1e12, 1e15, 1e18] // 对应 10^3, 10^6...
         
-        // 遍历单位，找到合适的除数
-        for i in 0..<units.count {
-            let divisor = divisors[i]
-            if self >= divisor {
-                // 计算数值并保留两位小数
-                let value = Double(self) / Double(divisor)
-                let formatter = NumberFormatter()
-                formatter.numberStyle = .decimal
-                formatter.minimumFractionDigits = 2 // 最少两位小数
-                formatter.maximumFractionDigits = 2 // 最多两位小数
-                
-                // 拼接结果（如："1.23K"）
-                if let formattedValue = formatter.string(from: NSNumber(value: value)) {
-                    return "\(formattedValue)\(units[i])"
-                }
+        // 找到合适的单位
+        var value = Double(self)
+        var unitIndex = -1
+        
+        for (i, divisor) in divisors.enumerated() {
+            if value >= divisor {
+                value /= divisor
+                unitIndex = i
+            } else {
+                break // 找到最大适用单位
             }
         }
         
-        // 默认返回原始值（理论上不会执行到这里）
-        return "\(self)"
+        // 无单位时（数值 < 1000）
+        guard unitIndex != -1 else {
+            return "\(self)"
+        }
+        
+        // 格式化数值（最多两位小数）
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 0 // 最少 0 位小数（自动省略无效零）
+        formatter.maximumFractionDigits = 2 // 最多 2 位小数
+        
+        if let formattedValue = formatter.string(from: NSNumber(value: value)) {
+            return "\(formattedValue)\(units[unitIndex])"
+        } else {
+            return "\(self)" // 异常情况返回原值
+        }
     }
 }
 

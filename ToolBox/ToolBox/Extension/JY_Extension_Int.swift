@@ -41,7 +41,7 @@ extension Int {
     /**
           将1000以上的数字转为1.0k, 10000以上的数字转为1.0w的格式
      */
-    public func yq_to_unitString() -> String {
+    public func yq_to_unitString_old() -> String {
         let numABS = abs(self)
         let sign = (self < 0) ? "-" : ""
 
@@ -55,6 +55,41 @@ extension Int {
         default:
             return "\(self)"
         }
+    }
+}
+
+extension Int {
+    /// 将数字转换为带有 K/M 后缀的缩写字符串（保留两位小数）
+    public func yq_to_unitString() -> String {
+        // 数值小于 1000，直接返回原始值
+        guard self >= 1000 else {
+            return "\(self)"
+        }
+        
+        // 定义单位和除数
+        let units = ["K", "M"]
+        let divisors = [1_000, 1_000_000]
+        
+        // 遍历单位，找到合适的除数
+        for i in 0..<units.count {
+            let divisor = divisors[i]
+            if self >= divisor {
+                // 计算数值并保留两位小数
+                let value = Double(self) / Double(divisor)
+                let formatter = NumberFormatter()
+                formatter.numberStyle = .decimal
+                formatter.minimumFractionDigits = 2 // 最少两位小数
+                formatter.maximumFractionDigits = 2 // 最多两位小数
+                
+                // 拼接结果（如："1.23K"）
+                if let formattedValue = formatter.string(from: NSNumber(value: value)) {
+                    return "\(formattedValue)\(units[i])"
+                }
+            }
+        }
+        
+        // 默认返回原始值（理论上不会执行到这里）
+        return "\(self)"
     }
 }
 

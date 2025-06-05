@@ -75,11 +75,11 @@ extension Int {
         var unitIndex = -1
         
         for (i, divisor) in divisors.enumerated() {
-            if value >= divisor {
-                value /= divisor
+            let tempValue = value / divisor
+            if tempValue < 1000 { // 关键修改：当转换后的值小于1000时使用当前单位
+                value = tempValue
                 unitIndex = i
-            } else {
-                break // 找到最大适用单位
+                break // 立即退出循环
             }
         }
         

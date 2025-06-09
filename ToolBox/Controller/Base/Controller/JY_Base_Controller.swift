@@ -44,7 +44,7 @@ open class JY_Base_Controller: UIViewController {
     
     public lazy var yq_request_loading_view: JY_View = JY_View()
     
-    private(set) lazy var yq_status_view: JY_View = JY_View()
+    public lazy var yq_status_view: JY_View = JY_View()
     
     deinit {
         print(String(format: "%@", self) + "被销毁了")

@@ -46,7 +46,7 @@ extension JY_Localization_Tool {
         NotificationCenter.default.removeObserver(observer, name: NSNotification.Name(JY_Localization_Tool.yq_language_change_notification_name()), object: anObject)
     }
 
-    class func yq_post_language_change_notification(object anObject: Any? = nil) {
+    public class func yq_post_language_change_notification(object anObject: Any? = nil) {
         NotificationCenter.default.post(name: NSNotification.Name(JY_Localization_Tool.yq_language_change_notification_name()), object: anObject)
     }
 }

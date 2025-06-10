@@ -31,6 +31,11 @@ open class JY_Navigation_Controller: UINavigationController {
         appearance.configureWithTransparentBackground()
         appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor:  JY_Navigation_Controller.yq_title_light_textColor(), NSAttributedString.Key.font: JY_Navigation_Controller.yq_title_font()]
         
+        appearance.largeTitleTextAttributes = [
+             .font: UIFont.systemFont(ofSize: 34, weight: .bold), // 字体大小和粗细
+             .foregroundColor: JY_Navigation_Controller.yq_title_light_textColor() // 字体颜色
+         ]
+        
 //         appearance.backgroundColor = UIColor.yq_color(colorString: "#FEFEFE")
         appearance.backgroundColor = UIColor(named: "yq_default_light_appearance_backgroundColor")
         
@@ -49,6 +54,11 @@ open class JY_Navigation_Controller: UINavigationController {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
         appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor:  JY_Navigation_Controller.yq_title_dark_textColor(),  NSAttributedString.Key.font: JY_Navigation_Controller.yq_title_font()]
+        
+        appearance.largeTitleTextAttributes = [
+             .font: UIFont.systemFont(ofSize: 34, weight: .bold), // 字体大小和粗细
+             .foregroundColor: JY_Navigation_Controller.yq_title_dark_textColor() // 字体颜色
+         ]
         
 //        appearance.backgroundColor = UIColor.yq_color(colorString: "#010101")
         appearance.backgroundColor = UIColor(named: "yq_default_dark_appearance_backgroundColor")

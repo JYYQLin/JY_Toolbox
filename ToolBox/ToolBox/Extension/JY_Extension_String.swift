@@ -8,7 +8,7 @@
 import UIKit
 
 extension String {
-    func yq_highLight(normalColor: UIColor, highlightColor: UIColor, highlightTexts: [String] ) -> NSAttributedString {
+    public func yq_highLight(normalColor: UIColor, highlightColor: UIColor, highlightTexts: [String]) -> NSAttributedString {
         let attributedString = NSMutableAttributedString(string: self)
         let fullRange = NSRange(location: 0, length: attributedString.length)
         attributedString.addAttribute(.foregroundColor, value: normalColor, range: fullRange)

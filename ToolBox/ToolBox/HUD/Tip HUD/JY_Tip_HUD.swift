@@ -84,6 +84,10 @@ extension JY_Tip_HUD {
             return
         }
         
+        if JY_Tip_HUD_Manager.yq_shared.yq_tip_HUD_array.last?.yq_task_Name == text {
+            return
+        }
+        
         guard UIWindow.yq_first_window() != nil else {
             return
         }
@@ -101,6 +105,10 @@ extension JY_Tip_HUD {
     @objc open class func yq_show_danger(tip text: String) {
         
         if text.count <= 0 {
+            return
+        }
+        
+        if JY_Tip_HUD_Manager.yq_shared.yq_tip_HUD_array.last?.yq_task_Name == text {
             return
         }
         

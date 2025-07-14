@@ -37,13 +37,13 @@ extension JY_Tip_HUD_Manager {
     public func yq_add_tip_HUD(_ HUD: JY_Tip_HUD) {
         
         var isExist = false
-//        for oldHUD in yq_tip_HUD_array {
-//            //  如果新要显示的hud已经存在了, 并且显示在的View也是同一个,则不添加
-//            if oldHUD.yq_task_Name == HUD.yq_task_Name {
-//                isExist = true
-//                break
-//            }
-//        }
+        for oldHUD in yq_tip_HUD_array {
+            //  如果新要显示的hud已经存在了, 并且显示在的View也是同一个,则不添加
+            if oldHUD.yq_task_Name == HUD.yq_task_Name {
+                isExist = true
+                break
+            }
+        }
         
         if isExist == false {
             yq_tip_HUD_array.append(HUD)

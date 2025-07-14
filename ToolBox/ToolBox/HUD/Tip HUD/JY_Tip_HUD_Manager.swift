@@ -17,6 +17,9 @@ open class JY_Tip_HUD_Manager {
         yq_remove_time_notification()
     }
     
+    /** 是否过滤重复的提示 */
+    private(set) lazy var yq_is_filter_duplicates: Bool = false
+    
     private(set) lazy var yq_tip_HUD_array: [JY_Tip_HUD] = [JY_Tip_HUD]()
     
     private(set) lazy var yq_is_show: Bool = false
@@ -37,13 +40,18 @@ extension JY_Tip_HUD_Manager {
     public func yq_add_tip_HUD(_ HUD: JY_Tip_HUD) {
         
         var isExist = false
-        for oldHUD in yq_tip_HUD_array {
-            //  如果新要显示的hud已经存在了, 并且显示在的View也是同一个,则不添加
-            if oldHUD.yq_task_Name == HUD.yq_task_Name {
-                isExist = true
-                break
+        
+        if yq_is_filter_duplicates == true {
+            
+            for oldHUD in yq_tip_HUD_array {
+                //  如果新要显示的hud已经存在了, 并且显示在的View也是同一个,则不添加
+                if oldHUD.yq_task_Name == HUD.yq_task_Name {
+                    isExist = true
+                    break
+                }
             }
         }
+
         
         if isExist == false {
             yq_tip_HUD_array.append(HUD)
@@ -94,4 +102,6 @@ extension JY_Tip_HUD_Manager {
 
 //extension JY_Tip_HUD_Manager: CAAnimationDelegate {
 //    
+//}
+
 //}

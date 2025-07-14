@@ -18,7 +18,7 @@ open class JY_Tip_HUD_Manager {
     }
     
     /** 是否过滤重复的提示 */
-    lazy var yq_is_filter_duplicates: Bool = false
+   open lazy var yq_is_filter_duplicates: Bool = false
     
     private(set) lazy var yq_tip_HUD_array: [JY_Tip_HUD] = [JY_Tip_HUD]()
     

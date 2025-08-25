@@ -11,18 +11,24 @@ import UIKit
 extension JY_Date_Tool {
     /**
      格式化时间
-        将时间戳转为对应MMDD格式
+     自动判断时间戳是秒级还是毫秒级，转为指定格式（默认MM-dd）
+     
+     - Parameters:
+       - time: 时间戳（支持秒级或毫秒级）
+       - dateFormat: 目标日期格式，默认"MM-dd"
+     - Returns: 格式化后的日期字符串
      */
     public static func yq_dateFormat(time: TimeInterval, dateFormat: String = "MM-dd") -> String {
-        // 1.创建时间格式化对象
+        // 处理可能的毫秒级时间戳（阈值：大于10^12认为是毫秒，可根据实际需求调整）
+        let timestamp = time > 1_000_000_000_000 ? time / 1000 : time
+        
+        // 创建时间格式化对象
         let fmt = DateFormatter()
         fmt.locale = Locale(identifier: "en")
         fmt.dateFormat = dateFormat
         
-        let date = Date(timeIntervalSince1970: time)
-        
-        let timeStr = fmt.string(from: date)
-        return timeStr
+        let date = Date(timeIntervalSince1970: timestamp)
+        return fmt.string(from: date)
     }
 }
 

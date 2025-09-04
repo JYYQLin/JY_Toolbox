@@ -1,3 +1,12 @@
+//
+//  JY_Extension_Float.swift
+//  JY_Treasure_Box
+//
+//  Created by JYYQLin on 2025/4/14.
+//
+
+import UIKit
+
 extension Float {
     /**
      保留指定小数位数，并在小数部分全为0时自动移除小数点，同时添加千位分隔符
@@ -61,7 +70,7 @@ extension Float {
     
 
 extension Float {
-    func yq_calculate_daily_allowance() -> Float? {
+   public func yq_calculate_daily_allowance() -> Float? {
         // 获取当前日期
         let today = Date()
         

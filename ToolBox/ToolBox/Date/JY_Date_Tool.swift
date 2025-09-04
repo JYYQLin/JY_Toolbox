@@ -70,8 +70,8 @@ extension JY_Date_Tool {
 }
 
 extension JY_Date_Tool {
-    /// 从"YYYY"格式的字符串中提取年份和月份
-    /// - Parameter dateString: 符合"YYYY"格式的日期字符串
+    /// 从"yyyy"格式的字符串中提取年份和月份
+    /// - Parameter dateString: 符合"yyyy"格式的日期字符串
     /// - Returns: 包含年份和月份的元组 (year: Int)?，如果解析失败则返回nil
     public static func yq_extract_year(from dateString: String) -> (Int)? {
         // 按"-"分割字符串
@@ -95,8 +95,8 @@ extension JY_Date_Tool {
         return (year)
     }
     
-    /// 从"YYYY-MM"格式的字符串中提取年份和月份
-    /// - Parameter dateString: 符合"YYYY-MM"格式的日期字符串
+    /// 从"yyyy-MM"格式的字符串中提取年份和月份
+    /// - Parameter dateString: 符合"yyyy-MM"格式的日期字符串
     /// - Returns: 包含年份和月份的元组 (year: Int, month: Int)?，如果解析失败则返回nil
     public static func yq_extract_year_month(from dateString: String) -> (year: Int, month: Int)? {
         // 按"-"分割字符串
@@ -104,7 +104,7 @@ extension JY_Date_Tool {
         
         // 检查分割后的结果是否符合预期（必须是两部分）
         guard components.count == 2 else {
-            print("日期格式错误：\(dateString)，应为YYYY-MM格式")
+            print("日期格式错误：\(dateString)，应为yyyy-MM格式")
             return nil
         }
         
@@ -133,8 +133,8 @@ extension JY_Date_Tool {
         return (year, month)
     }
     
-    /// 从"YYYY-MM-dd"格式的字符串中提取年、月、日
-    /// - Parameter dateString: 符合"YYYY-MM-dd"格式的日期字符串
+    /// 从"yyyy-MM-dd"格式的字符串中提取年、月、日
+    /// - Parameter dateString: 符合"yyyy-MM-dd"格式的日期字符串
     /// - Returns: 包含年、月、日的元组 (year: Int, month: Int, day: Int)?，如果解析失败则返回nil
     public static func yq_extract_year_month_day(from dateString: String) -> (year: Int, month: Int, day: Int)? {
         // 按"-"分割字符串
@@ -142,7 +142,7 @@ extension JY_Date_Tool {
         
         // 检查分割后的结果是否符合预期（必须是三部分）
         guard components.count == 3 else {
-            print("日期格式错误：\(dateString)，应为YYYY-MM-dd格式")
+            print("日期格式错误：\(dateString)，应为yyyy-MM-dd格式")
             return nil
         }
         
@@ -261,5 +261,54 @@ extension JY_Date_Tool {
         let day = calendar.component(.day, from: date)
         
         return (year, month, day)
+    }
+}
+
+extension JY_Date_Tool {
+    /// 将 "yyyy-MM-dd" 格式的日期字符串转换为时间戳（单位：秒，UTC时区）
+    /// - Parameter dateString: 符合 "yyyy-MM-dd" 格式的日期字符串（如 "2024-05-20"）
+    /// - Returns: 对应的时间戳（`TimeInterval?`），解析失败返回nil
+    public static func yq_timestamp_from_yyyy_mm_dd(_ dateString: String) -> TimeInterval? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.timeZone = TimeZone(identifier: "UTC") ?? .current // 优化：避免强制解包
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        
+        guard let targetDate = dateFormatter.date(from: dateString) else {
+            print("日期解析失败：字符串格式不符合 'yyyy-MM-dd'，或日期无效（如 '2024-02-30'）")
+            return nil
+        }
+        
+        return targetDate.timeIntervalSince1970
+    }
+    
+    /// 可选重载：支持自定义时间戳单位（秒/毫秒）和时区
+    /// - Parameters:
+    ///   - dateString: "yyyy-MM-dd" 格式字符串
+    ///   - unit: 时间戳单位（.second 秒 / .millisecond 毫秒），默认秒
+    ///   - timeZone: 解析时使用的时区，默认UTC
+    /// - Returns: 对应单位的时间戳（`Double?`），解析失败返回nil
+    public static func yq_timestamp_from_yyyy_mm_dd(
+        _ dateString: String,
+        unit: TimestampUnit = .second, // 现在枚举是public，默认值可正常引用
+        timeZone: TimeZone = TimeZone(identifier: "UTC") ?? .current // 优化：避免强制解包
+    ) -> Double? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.timeZone = timeZone
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        
+        guard let targetDate = dateFormatter.date(from: dateString) else {
+            print("日期解析失败：\(dateString) 格式无效或日期不存在")
+            return nil
+        }
+        
+        let baseTimestamp = targetDate.timeIntervalSince1970
+        return unit == .second ? baseTimestamp : baseTimestamp * 1000
+    }
+    
+    /// 时间戳单位枚举（显式声明为public，与方法权限匹配）
+    public enum TimestampUnit { // 关键修改：添加public修饰符
+        case second, millisecond
     }
 }

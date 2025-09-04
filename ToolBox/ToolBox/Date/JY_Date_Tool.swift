@@ -268,9 +268,9 @@ extension JY_Date_Tool {
     /// 将 "yyyy-MM-dd" 格式的日期字符串转换为时间戳（单位：秒，UTC时区）
     /// - Parameter dateString: 符合 "yyyy-MM-dd" 格式的日期字符串（如 "2024-05-20"）
     /// - Returns: 对应的时间戳（`TimeInterval?`），解析失败返回nil
-    public static func yq_timestamp_from_yyyy_mm_dd(_ dateString: String) -> TimeInterval? {
+    public static func yq_timestamp_from_yyyy_mm_dd(_ dateString: String, dateFormat: String = "yyyy-MM-dd") -> TimeInterval? {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.dateFormat = dateFormat
         dateFormatter.timeZone = TimeZone(identifier: "UTC") ?? .current // 优化：避免强制解包
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         
@@ -291,10 +291,11 @@ extension JY_Date_Tool {
     public static func yq_timestamp_from_yyyy_mm_dd(
         _ dateString: String,
         unit: TimestampUnit = .second, // 现在枚举是public，默认值可正常引用
-        timeZone: TimeZone = TimeZone(identifier: "UTC") ?? .current // 优化：避免强制解包
-    ) -> Double? {
+        timeZone: TimeZone = TimeZone(identifier: "UTC") ?? .current, // 优化：避免强制解包
+        dateFormat: String = "yyyy-MM-dd") -> Double? {
+            
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.dateFormat = dateFormat
         dateFormatter.timeZone = timeZone
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         

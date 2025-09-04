@@ -37,7 +37,7 @@ extension Int {
 
 
 extension JY_Date_Tool {
-    static func yq_get_currentMonth_firstAndLastDay() -> String {
+    public static func yq_get_currentMonth_firstAndLastDay() -> String {
         let calendar = Calendar.current
         let today = Date()
         
@@ -73,7 +73,7 @@ extension JY_Date_Tool {
     /// 从"YYYY"格式的字符串中提取年份和月份
     /// - Parameter dateString: 符合"YYYY"格式的日期字符串
     /// - Returns: 包含年份和月份的元组 (year: Int)?，如果解析失败则返回nil
-    static func yq_extract_year(from dateString: String) -> (Int)? {
+    public static func yq_extract_year(from dateString: String) -> (Int)? {
         // 按"-"分割字符串
         let components = dateString.components(separatedBy: "-")
         
@@ -98,7 +98,7 @@ extension JY_Date_Tool {
     /// 从"YYYY-MM"格式的字符串中提取年份和月份
     /// - Parameter dateString: 符合"YYYY-MM"格式的日期字符串
     /// - Returns: 包含年份和月份的元组 (year: Int, month: Int)?，如果解析失败则返回nil
-   static func yq_extract_year_month(from dateString: String) -> (year: Int, month: Int)? {
+    public static func yq_extract_year_month(from dateString: String) -> (year: Int, month: Int)? {
         // 按"-"分割字符串
         let components = dateString.components(separatedBy: "-")
         
@@ -136,7 +136,7 @@ extension JY_Date_Tool {
     /// 从"YYYY-MM-dd"格式的字符串中提取年、月、日
     /// - Parameter dateString: 符合"YYYY-MM-dd"格式的日期字符串
     /// - Returns: 包含年、月、日的元组 (year: Int, month: Int, day: Int)?，如果解析失败则返回nil
-    static func yq_extract_year_month_day(from dateString: String) -> (year: Int, month: Int, day: Int)? {
+    public static func yq_extract_year_month_day(from dateString: String) -> (year: Int, month: Int, day: Int)? {
         // 按"-"分割字符串
         let components = dateString.components(separatedBy: "-")
         
@@ -192,7 +192,7 @@ extension JY_Date_Tool {
 
 extension JY_Date_Tool {
     /** 对比B-A差几天 */
-   static func yq_days_between_dates(dateA: String, dateB: String) -> Int? {
+    public static func yq_days_between_dates(dateA: String, dateB: String) -> Int? {
         // 创建日期格式化器
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -215,7 +215,7 @@ extension JY_Date_Tool {
 extension JY_Date_Tool {
     /// 获取当前时间的年、月、日
     /// - Returns: 包含年、月、日的元组 (year: Int, month: Int, day: Int)
-    static func yq_get_current_year_month_day() -> (year: Int, month: Int, day: Int) {
+    public static func yq_get_current_year_month_day() -> (year: Int, month: Int, day: Int) {
         let currentDate = Date()
         let calendar = Calendar.current
         
@@ -228,7 +228,7 @@ extension JY_Date_Tool {
     
     /// 获取当前时间**前一天**的年、月、日（自动处理跨月/跨年场景，如1月1日的前一天是去年12月31日）
     /// - Returns: 包含前一天年、月、日的元组 (year: Int, month: Int, day: Int)
-    static func yq_get_yesterday_year_month_day() -> (year: Int, month: Int, day: Int) {
+    public static func yq_get_yesterday_year_month_day() -> (year: Int, month: Int, day: Int) {
         let currentDate = Date()
         let calendar = Calendar.current
         
@@ -252,7 +252,7 @@ extension JY_Date_Tool {
     /// 从指定时间戳获取对应的年、月、日
     /// - Parameter timestamp: 时间戳（秒）
     /// - Returns: 包含年、月、日的元组 (year: Int, month: Int, day: Int)
-    static func yq_get_year_month_day(from timestamp: TimeInterval) -> (year: Int, month: Int, day: Int) {
+    public static func yq_get_year_month_day(from timestamp: TimeInterval) -> (year: Int, month: Int, day: Int) {
         let date = Date(timeIntervalSince1970: timestamp)
         let calendar = Calendar.current
         
@@ -263,4 +263,3 @@ extension JY_Date_Tool {
         return (year, month, day)
     }
 }
-

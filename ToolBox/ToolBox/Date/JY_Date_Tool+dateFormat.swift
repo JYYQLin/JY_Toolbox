@@ -111,7 +111,7 @@ extension JY_Date_Tool {
             return "去年"
         } else {
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "YYYY-MM-dd"
+            dateFormatter.dateFormat = "yyyy-MM-dd"
             return dateFormatter.string(from: targetDate)
         }
         return ""

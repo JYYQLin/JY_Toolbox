@@ -226,6 +226,29 @@ extension JY_Date_Tool {
         return (year, month, day)
     }
     
+    /// 获取当前时间**前一天**的年、月、日（自动处理跨月/跨年场景，如1月1日的前一天是去年12月31日）
+    /// - Returns: 包含前一天年、月、日的元组 (year: Int, month: Int, day: Int)
+    static func yq_get_yesterday_year_month_day() -> (year: Int, month: Int, day: Int) {
+        let currentDate = Date()
+        let calendar = Calendar.current
+        
+        // 1. 计算当前日期的前一天：给当前日期添加“-1天”的偏移
+        // 注：Calendar的date(byAdding:)方法会自动处理跨月/跨年逻辑（如1月1日→12月31日）
+        guard let yesterdayDate = calendar.date(byAdding: .day, value: -1, to: currentDate) else {
+            // 极端情况下（如系统时间异常）若计算失败，默认返回当前日期（避免崩溃）
+            let fallback = yq_get_current_year_month_day()
+            print("计算前一天日期失败，返回当前日期作为 fallback：\(fallback.year)-\(fallback.month)-\(fallback.day)")
+            return fallback
+        }
+        
+        // 2. 从“前一天日期”中提取年、月、日
+        let year = calendar.component(.year, from: yesterdayDate)
+        let month = calendar.component(.month, from: yesterdayDate)
+        let day = calendar.component(.day, from: yesterdayDate)
+        
+        return (year, month, day)
+    }
+    
     /// 从指定时间戳获取对应的年、月、日
     /// - Parameter timestamp: 时间戳（秒）
     /// - Returns: 包含年、月、日的元组 (year: Int, month: Int, day: Int)
@@ -240,3 +263,4 @@ extension JY_Date_Tool {
         return (year, month, day)
     }
 }
+

@@ -26,10 +26,12 @@ extension JY_Date_Tool {
         let fmt = DateFormatter()
         fmt.locale = Locale(identifier: "en")
         fmt.dateFormat = dateFormat
+        fmt.timeZone = TimeZone(identifier: "UTC") ?? .current
         
         let date = Date(timeIntervalSince1970: timestamp)
         return fmt.string(from: date)
     }
+    
 }
 
 extension Int {

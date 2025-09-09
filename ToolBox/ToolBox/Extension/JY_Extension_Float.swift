@@ -216,3 +216,35 @@ extension Float {
         return dailyAllowance
     }
 }
+
+extension Int {
+   public func yq_calculate_daily_allowance() -> Int? {
+        // 获取当前日期
+        let today = Date()
+        
+        // 使用当前日历
+        let calendar = Calendar.current
+        
+        // 获取当前月份的天数范围
+        guard let range = calendar.range(of: .day, in: .month, for: today) else {
+            return nil
+        }
+        let daysInMonth = range.count
+        
+        // 获取今天是当月的第几天
+        let dayOfMonth = calendar.component(.day, from: today)
+        
+        // 计算当月剩余天数（包括今天）
+        let remainingDays = daysInMonth - dayOfMonth + 1
+        
+        // 防止除以零的情况
+        guard remainingDays > 0 else {
+            return nil
+        }
+        
+        // 计算每天可用金额
+        let dailyAllowance = self / Float(remainingDays)
+        
+        return dailyAllowance
+    }
+}

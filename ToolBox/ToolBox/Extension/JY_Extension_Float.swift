@@ -8,7 +8,7 @@
 import UIKit
 
 /// 科学计数法转换工具类
-class JY_Scientific_Number_Converter {
+public class JY_Scientific_Number_Converter {
     /// 将科学计数法字符串（如"3.033203e+08"）转换为普通数字字符串
     /// - Parameter scientificString: 科学计数法字符串
     /// - Returns: 普通数字格式字符串，转换失败返回原字符串

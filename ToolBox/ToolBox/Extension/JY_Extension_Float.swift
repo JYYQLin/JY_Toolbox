@@ -7,56 +7,35 @@
 
 import UIKit
 
-/// 科学计数法转换工具类
-public class JY_Scientific_Number_Converter {
-    /// 将科学计数法字符串（如"3.033203e+08"）转换为普通数字字符串
-    /// - Parameter scientificString: 科学计数法字符串
-    /// - Returns: 普通数字格式字符串，转换失败返回原字符串
-    public static func convert(from scientificString: String) -> String {
-        // 处理大小写"e"
-        let lowercased = scientificString.lowercased()
-        guard lowercased.contains("e") else {
-            return scientificString // 不是科学计数法，直接返回
+extension String {
+    /// 将以“分”为单位的纯数字字符串拆分为“元”和“分”
+    /// - Returns: 元字符串和分字符串的元组 (yuan, fen)
+    public func yq_split_yuan_fen() -> (yuan: String, fen: String) {
+        // 确保字符串只包含非数字字符
+        guard allSatisfy({ $0.isNumber }) else {
+            return ("0", "00") // 非纯数字返回，返回默认值
         }
         
-        // 分割基数和指数部分
-        let components = lowercased.components(separatedBy: "e")
-        guard components.count == 2,
-              let baseNumber = Decimal(string: components[0]),
-              let exponent = Int(components[1]) else {
-            return scientificString // 格式错误，返回原字符串
+        let trimmed = self.trimmingCharacters(in: .whitespaces) // 去除空格
+        guard !trimmed.isEmpty else {
+            return ("0", "00") // 空字符串，返回默认值
         }
         
-        // 计算实际数值：基数 × 10^指数
-        let result = baseNumber * pow(Decimal(10), exponent)
-        
-        // 转换为普通字符串（移除可能的尾部.0）
-        let formatter = NumberFormatter()
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        formatter.numberStyle = .none
-        formatter.maximumFractionDigits = 20 // 支持足够的小数位
-        
-        if let formatted = formatter.string(from: result as NSNumber) {
-            return formatted
+        // 处理长度不足2位的情况（如 "5" 表示 0元05分）
+        if trimmed.count < 2 {
+            let fen = String(repeating: "0", count: 2 - trimmed.count) + trimmed
+            return ("0", fen)
         }
         
-        // 备用方案：直接转换并清理格式
-        return String(describing: result).replacingOccurrences(of: " ", with: "")
-    }
-}
-
-// 为数字类型添加直接转换方法
-extension Double {
-    /// 将可能显示为科学计数法的Double转换为普通数字字符串
-    public var normalNumberString: String {
-        JY_Scientific_Number_Converter.convert(from: String(self))
-    }
-}
-
-extension Decimal {
-    /// 将可能显示为科学计数法的Decimal转换为普通数字字符串
-    public var normalNumberString: String {
-        JY_Scientific_Number_Converter.convert(from: String(describing: self).replacingOccurrences(of: " ", with: ""))
+        // 正常情况：最后两位是分，前面是元
+        let fenEndIndex = trimmed.index(trimmed.endIndex, offsetBy: -2)
+        let yuanPart = String(trimmed[..<fenEndIndex])
+        let fenPart = String(trimmed[fenEndIndex...])
+        
+        // 处理元部分为空的情况（如 "99" 表示 0元99分）
+        let yuan = yuanPart.isEmpty ? "0" : yuanPart
+        
+        return (yuan, fenPart)
     }
 }
 

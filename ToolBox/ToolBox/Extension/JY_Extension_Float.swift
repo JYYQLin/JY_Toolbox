@@ -39,6 +39,31 @@ extension String {
     }
 }
 
+extension Int {
+    /**
+     保留指定小数位数，并在小数部分全为0时自动移除小数点，同时添加千位分隔符
+     
+     - Parameter f: 要保留的小数位数
+     - Returns: 格式化后的字符串
+     */
+    public func yq_fen_money_format(f: Int) -> String {
+        let moneyText = "\(self)"
+        
+        var intText = ""
+        var floatText = ""
+        if self < 100 {
+            return "0." + moneyText
+        }
+        else {
+            let value = moneyText.yq_split_yuan_fen()
+            intText = value.yuan
+            floatText = value.fen
+            
+            return intText + "." + floatText
+        }
+    }
+}
+
 extension String {
     /**
      保留指定小数位数，并在小数部分全为0时自动移除小数点，同时添加千位分隔符

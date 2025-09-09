@@ -51,7 +51,7 @@ extension Int {
         
         var intText = ""
         var floatText = ""
-        if self < 100 {
+        if self < 100 && self >= 0 {
             return "0." + moneyText
         }
         else {
@@ -243,7 +243,7 @@ extension Int {
         }
         
         // 计算每天可用金额
-        let dailyAllowance = self / Float(remainingDays)
+        let dailyAllowance = self / remainingDays
         
         return dailyAllowance
     }
